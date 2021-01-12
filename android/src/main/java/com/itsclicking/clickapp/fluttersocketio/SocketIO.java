@@ -89,7 +89,21 @@ public class SocketIO {
         }
 
         mOptions = new IO.Options();
-        mOptions.transports = new String[]{Polling.NAME};
+        mOptions.forceNew = false;
+        mOptions.multiplex = true;
+
+        mOptions.transports = new String[] {Polling.NAME};
+        mOptions.upgrade = true;
+        mOptions.rememberUpgrade = false;
+        //mOptions.path = "/socket.io";
+        //mOptions.query = "classid=137129&teachercountry=Oman";
+
+        mOptions.reconnection = true;
+        mOptions.reconnectionAttempts = Integer.MAX_VALUE;
+        mOptions.reconnectionDelay = 1000;
+        mOptions.reconnectionDelayMax = 5000;
+        mOptions.randomizationFactor = .5;
+        mOptions.timeout = 20000;
 
         if (!Utils.isNullOrEmpty(_query)) {
             Utils.log(TAG, "query: " + _query);
