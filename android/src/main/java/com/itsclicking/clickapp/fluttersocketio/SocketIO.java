@@ -24,6 +24,7 @@ import io.socket.client.Socket;
 import io.socket.client.Url;
 import io.socket.emitter.Emitter;
 import io.socket.engineio.client.transports.WebSocket;
+import io.socket.engineio.client.transports.Polling;
 
 public class SocketIO {
 
@@ -88,7 +89,7 @@ public class SocketIO {
         }
 
         mOptions = new IO.Options();
-        mOptions.transports = new String[]{WebSocket.NAME};
+        mOptions.transports = new String[]{Polling.NAME};
 
         if (!Utils.isNullOrEmpty(_query)) {
             Utils.log(TAG, "query: " + _query);
