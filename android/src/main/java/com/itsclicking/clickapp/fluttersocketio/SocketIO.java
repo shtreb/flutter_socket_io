@@ -95,7 +95,7 @@ public class SocketIO {
         mOptions.transports = new String[] {Polling.NAME};
         mOptions.upgrade = true;
         mOptions.rememberUpgrade = false;
-        //mOptions.path = "/socket.io";
+        mOptions.path = _namespace;
         //mOptions.query = "classid=137129&teachercountry=Oman";
 
         mOptions.reconnection = true;
@@ -113,7 +113,7 @@ public class SocketIO {
         String id = Url.extractId(parsed);
         boolean newConnection = !managers.containsKey(id);
 
-        Manager io;
+        /*Manager io;
         if (newConnection) {
             io = new Manager(source, mOptions);
             managers.putIfAbsent(id, io);
@@ -124,7 +124,16 @@ public class SocketIO {
             io = managers.get(id);
         }
         if(io == null) return null;
-        return io.socket(_namespace, mOptions);
+        return io.socket(_namespace, mOptions);*/
+
+        Socket socket;
+
+        try {
+            return IO.socket(_domain, mOptions);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public String getId() {
